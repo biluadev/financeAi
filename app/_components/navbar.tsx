@@ -16,7 +16,7 @@ const NavBar = () => {
           href="/"
           className={
             pathname === "/"
-              ? "font-bold text-primary"
+              ? "font-bold text-green-500"
               : "text-muted-foreground"
           }
         >
@@ -26,7 +26,7 @@ const NavBar = () => {
           href="/transactions"
           className={
             pathname === "/transactions"
-              ? "font-bold text-primary"
+              ? "font-bold text-green-500"
               : "text-muted-foreground"
           }
         >
@@ -36,7 +36,7 @@ const NavBar = () => {
           href="/subscription"
           className={
             pathname === "/subscription"
-              ? "font-bold text-primary"
+              ? "font-bold text-green-500"
               : "text-muted-foreground"
           }
         >
