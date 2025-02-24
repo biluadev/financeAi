@@ -28,7 +28,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
       >
-        <ClerkProvider>{children}</ClerkProvider>
+        <ClerkProvider>
+          <div className="flex h-full flex-col overflow-hidden">{children}</div>
+        </ClerkProvider>
       </body>
     </html>
   );

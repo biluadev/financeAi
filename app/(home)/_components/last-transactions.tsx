@@ -11,7 +11,7 @@ interface LastTransactionProps {
 }
 
 const LastTransaction = ({ lastTransactions }: LastTransactionProps) => {
-  const getPriceColor = (transaction: Transaction) => {
+  const getAmountColor = (transaction: Transaction) => {
     if (transaction.type === TransactionType.EXPENSE) {
       return "text-red-500";
     }
@@ -21,6 +21,14 @@ const LastTransaction = ({ lastTransactions }: LastTransactionProps) => {
     }
 
     return "text-white";
+  };
+
+  const getAmountPrefix = (transaction: Transaction) => {
+    if (transaction.type === TransactionType.DEPOSIT) {
+      return "+";
+    }
+
+    return "-";
   };
   return (
     <ScrollArea className="rounded-md border">
@@ -36,7 +44,7 @@ const LastTransaction = ({ lastTransactions }: LastTransactionProps) => {
         {lastTransactions.map((transaction) => (
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="bg-white bg-opacity-[3%] p-3">
+              <div className="rounded-lg bg-white bg-opacity-[3%] p-3">
                 <PiggyBank size={20} />
               </div>
 
@@ -51,7 +59,8 @@ const LastTransaction = ({ lastTransactions }: LastTransactionProps) => {
                 </p>
               </div>
             </div>
-            <p className={`text-sm font-bold ${getPriceColor(transaction)}`}>
+            <p className={`text-sm font-bold ${getAmountColor(transaction)}`}>
+              {getAmountPrefix(transaction)}
               {formatCurrency(Number(transaction.amount))}
             </p>
           </div>
