@@ -8,6 +8,7 @@ import { getDashboard } from "../_data/get-dashboard";
 import ExpensesPerCategory from "./_components/expenses-per-category";
 import LastTransaction from "./_components/last-transactions";
 import { ScrollArea } from "../_components/ui/scroll-area";
+import { isMatch } from "date-fns";
 
 interface HomeProps {
   searchParams?: { month?: string };
@@ -20,6 +21,12 @@ const Home = async ({ searchParams }: HomeProps) => {
   }
 
   const month = searchParams?.month || String(new Date().getMonth() + 1);
+
+  const monthIsInvalid = !month || !isMatch(month, "MM");
+
+  if (monthIsInvalid) {
+    redirect(`?month=${new Date().getMonth() + 1}`);
+  }
 
   const dashboard = await getDashboard(month);
 
